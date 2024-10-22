@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator - FitnessPro</title>
+    <link rel="stylesheet" href="styles5.css">
+</head>
+<body>
+    <header>
+        <h1>FitnessPro</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="exe.html">Workouts</a></li>
+                <li><a href="fullweekdiet.html">Diet Plans</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="bmi-calculator">
+            <h2>BMI Calculator</h2>
+            <form id="bmiForm">
+                <div>
+                    <label for="weight">Weight (kg):</label>
+                    <input type="number" id="weight" name="weight" required>
+                </div>
+                <div>
+                    <label for="height">Height (cm):</label>
+                    <input type="number" id="height" name="height" required>
+                </div>
+                <div>
+                    <button type="button" onclick="calculateBMI()">Calculate BMI</button>
+                </div>
+            </form>
+            <div id="bmiResult" class="result"></div>
+        </section>
+    </main></br></br></br></br></br></br></br>
+    <footer>
+        <p>&copy; 2024 FitnessPro. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function calculateBMI() {
+            // Get weight and height values
+            const weight = document.getElementById('weight').value;
+            const height = document.getElementById('height').value;
+
+            // Convert height from cm to meters
+            const heightInMeters = height / 100;
+
+            // Calculate BMI
+            const bmi = weight / (heightInMeters * heightInMeters);
+
+            // Determine BMI category
+            let category = '';
+            if (bmi < 18.5) {
+                category = 'Underweight';
+            } else if (bmi >= 18.5 && bmi <= 24.9) {
+                category = 'Normal weight';
+            } else if (bmi >= 25 && bmi <= 29.9) {
+                category = 'Overweight';
+            } else if(bmi>=30 && bmi <=40){
+                category = 'Obesity';
+            }
+              else{
+                    category = 'INVALID VALUE';
+             }
+
+            // Display the result
+            document.getElementById('bmiResult').innerHTML = `
+                <h3>Your BMI: ${bmi.toFixed(2)}</h3>
+                <p>Category: ${category}</p>
+            `;
+        }
+    </script>
+</body>
+</html>
